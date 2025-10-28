@@ -5,11 +5,10 @@ import { Title, Row, TextQuestion, Box, Category } from "./styled";
 
 //Funcion para desordenar las preguntas
 const mezclarPreguntas = (array) => {
-  const copia = [...array]; //Spread operator: Hace una copia superficial del array, sin crear referencias al array original
+  const copia = [...array]; //Hace una copia superficial del array, sin crear referencias al array original
   for (let i = copia.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random()*(i + 1)); //Sumamos 1 para que incluya el maximo
-    [copia[i], copia[j]]= [copia[j], copia[i]]; //Algoritmo Fisher yates: para desordenar/barajear elementos del array
-
+    const j = Math.floor(Math.random()*(i + 1)); //Suma 1 para que incluya el maximo
+    [copia[i], copia[j]]= [copia[j], copia[i]]; //Algoritmo Fisher Yates: para desordenar/barajear elementos del array
   }
 
   return copia; 
@@ -29,21 +28,20 @@ function App() {
 
   if(preguntasBarajadas.length === 0) return <div>Cargando...</div>
 
-  //const pregunta = preguntas[preguntaActual];
   const pregunta = preguntasBarajadas[preguntaActual];
 
   const respuestaCorrecta = (opcion) => {
     if(opcion === pregunta.respuesta){
       setMensaje("Respuesta correcta👌");
 
-      // Cambiar de pregunta después de un pequeño delay
+      // Cambia de pregunta después de un pequeño delay
       setTimeout(() => {
          if(preguntaActual < preguntasBarajadas.length - 1){
           setPreguntaActual((prev) => prev + 1);
           setMensaje("");
 
         } else { //Si nos encontramos en la ultima pregunta
-          setPreguntaActual(0); //Volvemos a la primera pregunta
+          setPreguntaActual(0); //Vuelve a la primera pregunta
           setMensaje(""); //Limpiar mensaje
         }
       }, 1000);

@@ -3,7 +3,6 @@ import avatar from "../imgs/avatar.jpeg";
 import baloncesto from "../imgs/baloncesto.jpg";
 import guerra from "../imgs/guerra.jpg";
 import html from "../imgs/html.jpg";
-import jupiter from "../imgs/jupiter.jpg";
 import monalisa from "../imgs/monalisa.jpg";
 import reypop from "../imgs/reypop.jpg";
 import rio from "../video/rio.mp4";
