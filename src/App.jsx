@@ -1,14 +1,14 @@
 import preguntas from "./data/preguntas";
 import './App.css'
 import { useEffect, useState } from "react";
-import { Title, Row, TextQuestion, Box, Category } from "./styled";
+import { Title, Row, TextQuestion, Box, Category, AnswerButton } from "./styled";
 
-//Funcion para desordenar las preguntas
+// Función para desordenar las preguntas
 const mezclarPreguntas = (array) => {
-  const copia = [...array]; //Hace una copia superficial del array, sin crear referencias al array original
+  const copia = [...array]; // Hace una copia superficial del array, sin crear referencias al array original
   for (let i = copia.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random()*(i + 1)); //Suma 1 para que incluya el maximo
-    [copia[i], copia[j]]= [copia[j], copia[i]]; //Algoritmo Fisher Yates: para desordenar/barajear elementos del array
+    const j = Math.floor(Math.random()*(i + 1)); // Suma 1 para que incluya el maximo
+    [copia[i], copia[j]]= [copia[j], copia[i]]; // Algoritmo Fisher Yates: para desordenar/barajear elementos del array
   }
 
   return copia; 
@@ -20,8 +20,9 @@ function App() {
   const [preguntasBarajadas, setPreguntas] = useState([]);
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [mensaje, setMensaje] = useState("");
+  const letrasOpciones = ["A", "B", "C", "D"];
 
-  //Mezcla las preguntas solo una vez al cargar la app
+  // Mezcla las preguntas solo una vez al cargar la app
   useEffect(() => {
     setPreguntas(mezclarPreguntas(preguntas));
   }, []);
@@ -40,9 +41,9 @@ function App() {
           setPreguntaActual((prev) => prev + 1);
           setMensaje("");
 
-        } else { //Si nos encontramos en la ultima pregunta
-          setPreguntaActual(0); //Vuelve a la primera pregunta
-          setMensaje(""); //Limpiar mensaje
+        } else { // Si nos encontramos en la ultima pregunta
+          setPreguntaActual(0); // Vuelve a la primera pregunta
+          setMensaje(""); // Limpiar mensaje
         }
       }, 1000);
 
@@ -73,7 +74,7 @@ function App() {
         }
       <Box>
         {pregunta.opciones.map((opcion, indice) => {
-          return <p key={indice}><button onClick={() => respuestaCorrecta(opcion)}>X</button>{opcion}</p>
+          return <p key={indice}><AnswerButton onClick={() => respuestaCorrecta(opcion)}>{letrasOpciones[indice]}</AnswerButton>{opcion}</p>
         })
 
         }

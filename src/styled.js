@@ -59,3 +59,25 @@ export const Box = styled.div`
         }
     }
 `;
+
+export const AnswerButton = styled.button`
+  background: #1d7ae4;
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    background: #125aaa;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
+
