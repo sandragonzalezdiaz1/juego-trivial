@@ -1,4 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
+
+// Animación de shake para errores
+const shake = keyframes`
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+`;
 
 export const Title = styled.h1`
     text-align: center;
@@ -17,7 +27,7 @@ export const Title = styled.h1`
 export const Category = styled.p`
      text-align: center;
     font-size: 1.5rem;
-    color: #1d7ae4;
+    color: #fff;
     font-weight: 600;
     margin-top: 10px;
     margin-bottom: 25px;
@@ -61,8 +71,13 @@ export const Box = styled.div`
 `;
 
 export const AnswerButton = styled.button`
-  background: #1d7ae4;
-  color: white;
+   background: ${(props) =>
+    props.correct === true
+      ? "#28a745"
+      : props.correct === false
+      ? "#dc3545"
+      : props.bgColor || "#a2d2ff"};
+  color: #fff;
   font-weight: bold;
   font-size: 1.4rem;
   padding: 8px 14px;
@@ -72,12 +87,17 @@ export const AnswerButton = styled.button`
   transition: 0.2s ease;
 
   &:hover {
-    background: #125aaa;
-    transform: scale(1.05);
+    transform: scale(1.15);
   }
 
   &:active {
     transform: scale(0.95);
   }
+
+  ${(props) =>
+    props.correct === false &&
+    css`
+      animation: ${shake} 0.5s;
+    `}
 `;
 
